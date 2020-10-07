@@ -9,6 +9,7 @@ import (
 )
 
 func GetUser(res http.ResponseWriter, req *http.Request) {
+	// Get the values needed from the request
 	userIdParam := req.URL.Query().Get("user_id")
 	userId, err := strconv.ParseInt(userIdParam, 10, 64)
 	if err != nil {
@@ -18,6 +19,7 @@ func GetUser(res http.ResponseWriter, req *http.Request) {
 		return
 	}
 
+	// Pass values to service layer
 	user, err := services.GetUser(userId)
 	if err != nil {
 		res.WriteHeader(http.StatusNotFound)

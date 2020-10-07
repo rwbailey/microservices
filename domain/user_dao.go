@@ -6,8 +6,9 @@ import (
 )
 
 var (
+	// mock database data
 	users = map[int64]*User{
-		123: {Id: 123, FirstName: "Richard", LastName: "Bailey", Email: "rb@example.com"},
+		123: {Id: 123, FirstName: "Richard", LastName: "Bailey", Email: "richard@example.com"},
 	}
 )
 
