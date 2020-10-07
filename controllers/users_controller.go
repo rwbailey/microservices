@@ -22,14 +22,13 @@ func GetUser(res http.ResponseWriter, req *http.Request) {
 		}
 		jsonValue, _ := json.Marshal(apiErr)
 
-		// Return bad request to the client
 		res.WriteHeader(apiErr.StatusCode)
 		res.Write([]byte(jsonValue))
 		return
 	}
 
 	// Pass values to service layer
-	user, apiErr := services.GetUser(userId)
+	user, apiErr := services.UsersService.GetUser(userId)
 	if apiErr != nil {
 		jsonValue, _ := json.Marshal(apiErr)
 		res.WriteHeader(apiErr.StatusCode)
