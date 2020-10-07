@@ -14,7 +14,13 @@ var (
 	}
 )
 
-func GetUser(userId int64) (*User, *utils.ApplicationError) {
+type userDao struct{}
+
+var (
+	UserDao userDao
+)
+
+func (*userDao) GetUser(userId int64) (*User, *utils.ApplicationError) {
 	if user := users[userId]; user != nil {
 		return user, nil
 	}
