@@ -5,6 +5,8 @@ import (
 	"net/http"
 	"strconv"
 
+	"github.com/rwbailey/microservices/utils"
+
 	"github.com/rwbailey/microservices/services"
 )
 
@@ -13,17 +15,25 @@ func GetUser(res http.ResponseWriter, req *http.Request) {
 	userIdParam := req.URL.Query().Get("user_id")
 	userId, err := strconv.ParseInt(userIdParam, 10, 64)
 	if err != nil {
+		apiErr := &utils.ApplicationError{
+			Message:    "user_id must be a number",
+			StatusCode: http.StatusBadRequest,
+			Code:       "bad request",
+		}
+		jsonValue, _ := json.Marshal(apiErr)
+
 		// Return bad request to the client
-		res.WriteHeader(http.StatusBadRequest)
-		res.Write([]byte("user_id must be a number"))
+		res.WriteHeader(apiErr.StatusCode)
+		res.Write([]byte(jsonValue))
 		return
 	}
 
 	// Pass values to service layer
-	user, err := services.GetUser(userId)
-	if err != nil {
-		res.WriteHeader(http.StatusNotFound)
-		res.Write([]byte(err.Error()))
+	user, apiErr := services.GetUser(userId)
+	if apiErr != nil {
+		jsonValue, _ := json.Marshal(apiErr)
+		res.WriteHeader(apiErr.StatusCode)
+		res.Write([]byte(jsonValue))
 		// handle error and return to client
 		return
 	}
