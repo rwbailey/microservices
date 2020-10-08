@@ -2,6 +2,7 @@ package domain
 
 import (
 	"fmt"
+	"log"
 	"net/http"
 
 	"github.com/rwbailey/microservices/utils"
@@ -14,13 +15,22 @@ var (
 	}
 )
 
+type userDaoInterface interface {
+	GetUser(int64) (*User, *utils.ApplicationError)
+}
+
 type userDao struct{}
 
 var (
-	UserDao userDao
+	UserDao userDaoInterface
 )
 
+func init() {
+	UserDao = &userDao{}
+}
+
 func (*userDao) GetUser(userId int64) (*User, *utils.ApplicationError) {
+	log.Println("accessing database")
 	if user := users[userId]; user != nil {
 		return user, nil
 	}
