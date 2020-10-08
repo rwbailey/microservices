@@ -4,6 +4,12 @@ import (
 	"net/http"
 
 	"github.com/rwbailey/microservices/controllers"
+
+	"github.com/gin-gonic/gin"
+)
+
+var (
+	router *gin.Engine
 )
 
 // StartApp startes the application
