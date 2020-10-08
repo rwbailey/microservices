@@ -20,14 +20,14 @@ func GetUser(c *gin.Context) {
 			Code:       "bad request",
 		}
 
-		utils.Respond(c, apiErr.StatusCode, apiErr)
+		utils.RespondError(c, apiErr)
 		return
 	}
 
 	// Pass values to service layer
 	user, apiErr := services.UsersService.GetUser(userId)
 	if apiErr != nil {
-		utils.Respond(c, apiErr.StatusCode, apiErr)
+		utils.RespondError(c, apiErr)
 		return
 	}
 
