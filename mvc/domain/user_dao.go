@@ -5,7 +5,7 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/rwbailey/microservices/utils"
+	"github.com/rwbailey/microservices/mvc/utils"
 )
 
 var (

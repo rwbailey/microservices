@@ -1,8 +1,8 @@
 package services
 
 import (
-	"github.com/rwbailey/microservices/domain"
-	"github.com/rwbailey/microservices/utils"
+	"github.com/rwbailey/microservices/mvc/domain"
+	"github.com/rwbailey/microservices/mvc/utils"
 )
 
 type usersService struct{}

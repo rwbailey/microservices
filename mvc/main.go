@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/rwbailey/microservices/app"
+	"github.com/rwbailey/microservices/mvc/app"
 )
 
 func main() {

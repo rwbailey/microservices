@@ -6,8 +6,8 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"github.com/rwbailey/microservices/services"
-	"github.com/rwbailey/microservices/utils"
+	"github.com/rwbailey/microservices/mvc/services"
+	"github.com/rwbailey/microservices/mvc/utils"
 )
 
 func GetUser(c *gin.Context) {

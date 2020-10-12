@@ -1,7 +1,7 @@
 package app
 
 import (
-	"github.com/rwbailey/microservices/controllers"
+	"github.com/rwbailey/microservices/mvc/controllers"
 )
 
 func mapUrls() {
