@@ -2,7 +2,6 @@ package github
 
 import (
 	"encoding/json"
-	"fmt"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -22,5 +21,9 @@ func TestCreateRepoRequestAsJson(t *testing.T) {
 	bytes, err := json.Marshal(request)
 	assert.Nil(t, err)
 	assert.NotNil(t, bytes)
-	fmt.Println(string(bytes))
+	// assert.EqualValues(t, string(bytes), `{"name":"test-repo","description":"This is a Test Repo Created Via The API.","homepage":"https://github.com","private":true,"has_issues":true,"has_projects":true,"has_wiki":true}`)
+
+	var target CreateRepoRequest
+	err = json.Unmarshal(bytes, &target)
+	assert.Nil(t, err)
 }
