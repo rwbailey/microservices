@@ -19,6 +19,12 @@ func TestMain(m *testing.M) {
 	os.Exit(m.Run())
 }
 
+func TestConstants(t *testing.T) {
+	assert.EqualValues(t, "Authorization", headerAuthorization)
+	assert.EqualValues(t, "token %s", headerAuthorizationFormat)
+	assert.EqualValues(t, "https://api.github.com/user/repos", urlCreateRepo)
+}
+
 func TestGetAuthHeader(t *testing.T) {
 	header := getAuthHeader("abc123")
 	assert.EqualValues(t, header, "token abc123")
