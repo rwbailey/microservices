@@ -39,7 +39,7 @@ func CreateRepo(accessToken string, request github.CreateRepoRequest) (*github.C
 	if err != nil {
 		return nil, &github.GithubErrorResponse{
 			StatusCode: http.StatusInternalServerError,
-			Message:    err.Error(),
+			Message:    "Invalid Response Body",
 		}
 	}
 
@@ -48,7 +48,7 @@ func CreateRepo(accessToken string, request github.CreateRepoRequest) (*github.C
 		if err := json.Unmarshal(bytes, &errResp); err != nil {
 			return nil, &github.GithubErrorResponse{
 				StatusCode: http.StatusInternalServerError,
-				Message:    err.Error(),
+				Message:    "Invalid JSON response body",
 			}
 		}
 		errResp.StatusCode = response.StatusCode
@@ -60,7 +60,7 @@ func CreateRepo(accessToken string, request github.CreateRepoRequest) (*github.C
 		log.Printf("error while trying to unmarshal create repo successful response body %s", err.Error())
 		return nil, &github.GithubErrorResponse{
 			StatusCode: http.StatusInternalServerError,
-			Message:    err.Error(),
+			Message:    "Error when trying to unmarshal github response",
 		}
 	}
 
